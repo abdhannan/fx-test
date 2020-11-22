@@ -8,7 +8,6 @@
 	<!-- SEO Metatag -->
 	<meta name="description" content="Free Web tutorials">
 	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
-	<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 
 	<!-- Responsive Metatag -->
@@ -16,7 +15,7 @@
 
 	<?php wp_enqueue_script("jquery"); ?>
 
-	<title><?php bloginfo('name'); ?></title>
+
 	<?php wp_head(); ?>
 </head>
 
