@@ -5,11 +5,6 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-	<!-- SEO Metatag -->
-	<meta name="description" content="Free Web tutorials">
-	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
-
-
 	<!-- Responsive Metatag -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
