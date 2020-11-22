@@ -21,10 +21,7 @@
                             </div>
                             <div class="fun-content">
                                 <?php the_content(); ?>
-                                <p>
-                                    <?php //the_field('fun_fact_video_link');
-                                   echo $my_array_of_vars['v']; 
-                                 ?> </p>
+                                
                                 <a class="btn btn-primary" href="<?php the_permalink(  ); ?>">View Our Video Library</a>
                             </div>
                         </div>
