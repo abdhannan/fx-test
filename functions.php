@@ -145,6 +145,12 @@ function university_animal_clinic_scripts() {
 
 	wp_enqueue_script( 'university-animal-clinic-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
+	/**
+	 * Load templates-assets function (css, js)
+	 */
+	require get_template_directory() . '/inc/template-assets.php';
+
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -178,3 +184,51 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * @author Abd Hannan
+ * 
+ * Custom code start here
+ */
+
+
+
+ 
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
+
+/**
+ * Register nav menus for bootstrap
+ */
+register_nav_menus( array(
+	'primary-header' => __( 'Primary Header', 'university_animal_clinic_setup' ),
+	'footer-menu' => __( 'Footer Menu', 'university_animal_clinic_setup' ),
+) );
+
+/**
+ * Theme options
+ */
+
+add_action('acf/init', 'my_acf_op_init');
+function my_acf_op_init() {
+
+// Check function exists.
+if( function_exists('acf_add_options_page') ) {
+
+	// Register options page.
+		$option_page = acf_add_options_page(array(
+		'page_title' => __('Theme Options'),
+		'menu_title' => __('Theme Options'),
+		'menu_slug' => 'theme-options',
+		'capability' => 'edit_posts',
+		'icon_url' => 'dashicons-book-alt',
+		'redirect' => false,
+		'position' => '10',
+		'updated_message' => __("The option has been updated", 'acf'),
+		));
+	}
+}

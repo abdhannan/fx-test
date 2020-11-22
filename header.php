@@ -1,59 +1,106 @@
-<?php
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package University_Animal_CLinic
- */
-
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
+	<!-- SEO Metatag -->
+	<meta name="description" content="Free Web tutorials">
+	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+
+	<!-- Responsive Metatag -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<?php wp_enqueue_script("jquery"); ?>
+
+	<title><?php bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'university-animal-clinic' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$university_animal_clinic_description = get_bloginfo( 'description', 'display' );
-			if ( $university_animal_clinic_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $university_animal_clinic_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+	<!-- Header Start -->
+	<div class="covid-message">
+		<div class="container">
+			<div class="covid-text">
+				<?php the_field('flash_message_content', 'option'); ?>
+			</div>
+			<div class="covid-link">
+				<a class="learn-more" href="<?php the_field('flash_message_button_link' , 'option'); ?>"><?php the_field('flash_message_button_label' , 'options'); ?> <span class="icon-arrow-right"></span></a>
+			</div>
+			<a href="javascript:void(0);" class="icon-close removeit"></a>
+		</div>
+	</div>
+	<header class="header">
+		<div class="container">
+			<div class="header-wrap">
+				<div class="header-logo">
+					<a href="<?php bloginfo( 'url' ); ?>">
+						<?php
+							the_custom_logo();
+						?>
+					</a>
+				</div>
+				<div class="header-right">
+					<div class="header-content">
+						<div class="call-us"><span><?php the_field('call_us_text', 'option'); ?></span> <a href="tel:<?php the_field('call_us_phone', 'option'); ?>"><?php the_field('call_us_phone', 'option'); ?></a></div>
+						<div class="online-request">
+							<a href="<?php the_field('cta_button_link_1', 'option'); ?>" class="btn btn-secondary"><?php the_field('cta_button_label_1', 'option'); ?></a>
+							<a href="<?php the_field('cta_button_link_2', 'option'); ?>" class="btn btn-primary"><?php the_field('cta_button_label_2', 'option'); ?></a>
+						</div>
+					</div>
+					<div class="header-bottom">
+						<nav class="navbar navbar-expand-lg navbar-light">
+							<button class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+								aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+								<span class="menu-text">Menu</span>
+							</button>
+							<?php
+							wp_nav_menu( array(
+								'theme_location'  => 'primary-header',
+								'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
+								'container'       => 'div',
+								'container_class' => 'collapse navbar-collapse',
+								'container_id'    => 'navbarSupportedContent',
+								'menu_class'      => 'navbar-nav',
+								'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+								'walker'          => new WP_Bootstrap_Navwalker(),
+							) );
+							?>
+							
+						</nav>
+						<div class="header-search">
+							<a href="javascript:void(0);" class="icon-search"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'university-animal-clinic' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+		<div class="searchbar">
+			<div class="container">
+				<div class="searchbar-inner">
+					<input type="text" class="form-control" placeholder="Search here..." />
+					<button type="submit" class="btn search-btn icon-search"></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="mobile-bottom-header">
+			<div class="call-us">
+				<span><?php the_field('call_us_text', 'option'); ?> </span>
+				<a href="tel:<?php the_field('call_us_phone', 'option'); ?>"><?php the_field('call_us_phone', 'option'); ?></a>
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->

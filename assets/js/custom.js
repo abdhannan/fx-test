@@ -1,8 +1,9 @@
-$('.header .icon-search').on('click', function () {
-    $(".searchbar").toggleClass("active");
-});
+jQuery(document).ready(function($) {
+    $('.header .icon-search').on('click', function () {
+        $(".searchbar").toggleClass("active");
+    });
 
-// Sticky Header Start
+    // Sticky Header Start
 $(window).scroll(function () {
     var fromTopPx = 200;
     var scrolledFromtop = $(window).scrollTop();
@@ -68,9 +69,12 @@ $('.testi-owl').owlCarousel({
 });
 
 
+
 $('.covid-message .removeit').on('click', function () {
     $(this).closest(".covid-message").remove();
 });
+
+
 
 
 // Fun Fact 
@@ -114,3 +118,13 @@ $(document).ready(function () {
 $(".back-top .learn-more").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 1000);
 });
+
+
+});
+
+
+
+
+
+
+
